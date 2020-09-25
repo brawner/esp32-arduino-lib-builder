@@ -8,13 +8,15 @@ source ./tools/config.sh
 
 if [ ! -d "$AR_COMPS/arduino" ]; then
 	git clone $AR_REPO_URL "$AR_COMPS/arduino"
+	git -C "$AR_COMPS/arduino" apply ../espy_arduino_library.patch
+	git -C "$AR_COMPS/arduino" add libraries/WiFi/src
+	git -C "$AR_COMPS/arduino" commit -m "Applying compile fixes"
 else
 	git -C "$AR_COMPS/arduino" fetch origin && \
 	git -C "$AR_COMPS/arduino" pull origin master
 fi
 if [ $? -ne 0 ]; then exit 1; fi
 git -C "$AR_COMPS/arduino" submodule update --init --recursive
-
 #
 # CLONE/UPDATE ESP32-CAMERA
 #

@@ -19,7 +19,7 @@ AR_USER="espressif"
 AR_REPO="$AR_USER/arduino-esp32"
 
 IDF_REPO_URL="https://github.com/espressif/esp-idf.git"
-CAMERA_REPO_URL="https://github.com/espressif/esp32-camera.git"
+CAMERA_REPO_URL="https://github.com/jjsch-dev/esp32-camera.git"
 FACE_REPO_URL="https://github.com/espressif/esp-face.git"
 AR_REPO_URL="https://github.com/$AR_REPO.git"
 
@@ -104,4 +104,3 @@ function git_create_pr(){ # git_create_pr <branch> <title>
 	local done_pr=`echo "$git_create_pr_res" | jq -r '.title'`
 	if [ ! "$done_pr" == "" ] && [ ! "$done_pr" == "null" ]; then echo 1; else echo 0; fi
 }
-
